@@ -1,0 +1,6 @@
+# Verstecke sensible Dateien
+/config/config.php
+
+# Verstecke Log-Dateien und Caches
+*.log
+/cache/
