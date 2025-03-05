@@ -1,7 +1,7 @@
 <?php
 // Automatisches Migrations-Skript für MySQL
 
-require 'config.php'; // Stellt die Datenbankverbindung her
+require __DIR__ . '/../config/config.php';
 
 $migrations = [
     "001_create_users_table.sql",
