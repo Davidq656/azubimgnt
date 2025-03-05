@@ -1,5 +1,5 @@
 <?php
-require 'config.php'; // Verbindung zur Datenbank
+require '../config/config.php'; // Datenbankverbindung
 header('Content-Type: application/json');
 session_start();
 
