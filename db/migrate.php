@@ -1,20 +1,20 @@
 <?php
-// Automatisches Migrations-Skript für MySQL
+require '../config/config.php'; // Stellt die DB-Verbindung her
 
-require __DIR__ . '/../config/config.php';
+header('Content-Type: text/plain');
 
-$migrations = [
-    "001_create_users_table.sql",
-    "002_add_roles.sql"
-];
+$migrationsDir = __DIR__ . "/migrations/";
+$migrations = glob($migrationsDir . "*.sql"); // Alle SQL-Dateien abrufen
+sort($migrations); // Dateien in Reihenfolge ausführen (001, 002, 003...)
 
 foreach ($migrations as $file) {
-    $sql = file_get_contents(__DIR__ . "/migrations/$file");
+    $sql = file_get_contents($file);
+    
     try {
         $pdo->exec($sql);
-        echo "Migration $file erfolgreich ausgeführt.<br>";
+        echo "Migration " . basename($file) . " erfolgreich ausgeführt.\n";
     } catch (PDOException $e) {
-        echo "Fehler bei Migration $file: " . $e->getMessage() . "<br>";
+        echo "Fehler bei " . basename($file) . ": " . $e->getMessage() . "\n";
     }
 }
 ?>
