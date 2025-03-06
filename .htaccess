@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Falls kein Token in localStorage → Weiterleitung zu login.php
+RewriteCond %{REQUEST_URI} !^/public/login.php$ [NC]
+RewriteCond %{HTTP_COOKIE} !token
+RewriteRule ^$ /public/login.php [L]
+
+# Falls Token vorhanden → Weiterleitung zum Dashboard
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /public/index.php [L]
+
+# Erlaubt den direkten Zugriff auf Dateien & Verzeichnisse
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
